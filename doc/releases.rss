@@ -1,0 +1,38 @@
+<rss version="2.0">
+ <channel>
+  <title>XSSFilter</title>
+  <description/>
+   <link>http://spu.tnik.org/lib/xssfilter/</link>
+     
+   <item>
+    <link>http://spu.tnik.org/files/xssfilter-$version.tar.gz</link>
+    <title>XSSFilter 10.12.28</title>
+    <guid isPermalink="true">http://spu.tnik.org/files/xssfilter-10.12.28.tar.gz</guid>
+    <description>adding UTF8 filtering</description>
+   </item>
+   <item>
+    <link>http://spu.tnik.org/files/xssfilter-$version.tar.gz</link>
+    <title>XSSFilter 9.02.15</title>
+    <guid isPermalink="true">http://spu.tnik.org/files/xssfilter-9.02.15.tar.gz</guid>
+    <description>removing an unnecessary global</description>
+   </item>
+   <item>
+    <link>http://spu.tnik.org/files/xssfilter-$version.tar.gz</link>
+    <title>XSSFilter 8.07.07</title>
+    <guid isPermalink="true">http://spu.tnik.org/files/xssfilter-8.07.07.tar.gz</guid>
+    <description>allowing more safe tags and attributes</description>
+   </item>
+   <item>
+    <link>http://spu.tnik.org/files/xssfilter-$version.tar.gz</link>
+    <title>XSSFilter 8.06.22</title>
+    <guid isPermalink="true">http://spu.tnik.org/files/xssfilter-8.06.22.tar.gz</guid>
+    <description>added anchors to the href/src patterns, and absolute local URLs (i.e. /blah)</description>
+   </item>
+   <item>
+    <link>http://spu.tnik.org/files/xssfilter-$version.tar.gz</link>
+    <title>XSSFilter 8.04.20</title>
+    <guid isPermalink="true">http://spu.tnik.org/files/xssfilter-8.04.20.tar.gz</guid>
+    <description>first public version</description>
+   </item>
+ </channel>
+</rss>

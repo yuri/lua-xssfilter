@@ -1,5 +1,6 @@
 package    = 'XSSFilter'
 versions   = {
+   {'10.12.28', 'December 28, 2010',  'adding UTF8 filtering'},
    {'9.02.15', 'February 15, 2009',  'removing an unnecessary global'},
    {'8.07.07', 'July 7, 2008',  'allowing more safe tags and attributes'},
    {'8.06.22', 'June 22, 2008', 'added anchors to the href/src patterns, and absolute local URLs (i.e. /blah)'},
@@ -25,9 +26,6 @@ license    = 'MIT/X11'
 homepage   = 'http://spu.tnik.org/lib/xssfilter/'
 favicon    = 'http://spu.tnik.org/lib/xssfilter/xssfilter-shortcut.png'
 download   = 'http://spu.tnik.org/files/xssfilter-$version.tar.gz'
---download   = "/tmp/xssfilter-$version.tar.gz"
-push       = "scp %s tnik.org:/var/www/tnik.org/files/"
---push       = "cp %s /tmp/"
 logo       = 'http://spu.tnik.org/lib/xssfilter/xssfilter.png'
 keywords   = 'lua, xss'
 rss        = homepage.."releases.rss"

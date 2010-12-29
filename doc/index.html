@@ -71,7 +71,7 @@
   releases:</p>
 
 <p>  <ul>
-  <li><a href="http://spu.tnik.org/files/xssfilter-9.02.15.tar.gz">XSSFilter-9.02.15</a> - removing an unnecessary global (February 15, 2009) </li> <li><a href="http://spu.tnik.org/files/xssfilter-8.07.07.tar.gz">XSSFilter-8.07.07</a> - allowing more safe tags and attributes (July 7, 2008) </li> <li><a href="http://spu.tnik.org/files/xssfilter-8.06.22.tar.gz">XSSFilter-8.06.22</a> - added anchors to the href/src patterns, and absolute local URLs (i.e. /blah) (June 22, 2008) </li> <li><a href="http://spu.tnik.org/files/xssfilter-8.04.20.tar.gz">XSSFilter-8.04.20</a> - first public version (April 20, 2008) </li> 
+  <li><a href="http://spu.tnik.org/files/xssfilter-10.12.28.tar.gz">XSSFilter-10.12.28</a> - adding UTF8 filtering (December 28, 2010) </li> <li><a href="http://spu.tnik.org/files/xssfilter-9.02.15.tar.gz">XSSFilter-9.02.15</a> - removing an unnecessary global (February 15, 2009) </li> <li><a href="http://spu.tnik.org/files/xssfilter-8.07.07.tar.gz">XSSFilter-8.07.07</a> - allowing more safe tags and attributes (July 7, 2008) </li> <li><a href="http://spu.tnik.org/files/xssfilter-8.06.22.tar.gz">XSSFilter-8.06.22</a> - added anchors to the href/src patterns, and absolute local URLs (i.e. /blah) (June 22, 2008) </li> <li><a href="http://spu.tnik.org/files/xssfilter-8.04.20.tar.gz">XSSFilter-8.04.20</a> - first public version (April 20, 2008) </li> 
   </ul></p>
 
 <p>  It installs like any other single-file Lua module: just put it somewhere in
@@ -155,14 +155,16 @@ Please contact Yuri Takhteyev (yuri -at- freewisdom.org) with any questions.
 
 <a name="LuaDoc"></a><h1>LuaDoc<sup class="return"><a class="return" href="#top">&uarr;</a></sup></h1>
  <table style="width:100%" class="function_list">
-   <tr>
+ 
+  <tr>
    <td colspan=2 style='background: #dddddd;'>
     <h2>xssfilter</h2>
     <p>Filters XHTML removing all tags that are not explicitly allowed.  The function parse_xml() is adapted from Roberto Ierusalmischy's collect() (see http://lua-users.org/wiki/LuaXml).  (c) 2007, 2008  Yuri Takhteyev (yuri@freewisdom.org)  License: MIT/X, see http://sputnik.freewisdom.org/en/License </p>
     
    </td>
   </tr>
-     <tr>
+  
+   <tr>
 	<td class="name" width="300px" style="vertical-align: top;"><b>XSSFilter:filter()</b></td>
 	<td class="summary" >Filters (X)HTML.
      <dl>
@@ -171,7 +173,8 @@ Please contact Yuri Takhteyev (yuri -at- freewisdom.org) with any questions.
      Returns: <font color="purple">A string with all but the allowed tags removed. </color>
     </td>
    </tr>
-     <tr>
+  
+   <tr>
 	<td class="name" width="300px" style="vertical-align: top;"><b>XSSFilter:get_replacement()</b></td>
 	<td class="summary" >Returns HTML to be used for replacing bad tags.
      <dl>
@@ -180,7 +183,8 @@ Please contact Yuri Takhteyev (yuri -at- freewisdom.org) with any questions.
      Returns: <font color="purple">replacement HTML. </color>
     </td>
    </tr>
-     <tr>
+  
+   <tr>
 	<td class="name" width="300px" style="vertical-align: top;"><b>XSSFilter:init()</b></td>
 	<td class="summary" >Initializes the new instance of XSSFilter.
      <dl>
@@ -189,7 +193,8 @@ Please contact Yuri Takhteyev (yuri -at- freewisdom.org) with any questions.
      Returns: 
     </td>
    </tr>
-     <tr>
+  
+   <tr>
 	<td class="name" width="300px" style="vertical-align: top;"><b>find_match()</b></td>
 	<td class="summary" > 
      <dl>
@@ -198,7 +203,8 @@ Please contact Yuri Takhteyev (yuri -at- freewisdom.org) with any questions.
      Returns: 
     </td>
    </tr>
-     <tr>
+  
+   <tr>
 	<td class="name" width="300px" style="vertical-align: top;"><b>new()</b></td>
 	<td class="summary" >Creates a new instance of XSSFilter.
      <dl>
@@ -207,7 +213,8 @@ Please contact Yuri Takhteyev (yuri -at- freewisdom.org) with any questions.
      Returns: <font color="purple">a new instance of XSSFilter. </color>
     </td>
    </tr>
-     <tr>
+  
+   <tr>
 	<td class="name" width="300px" style="vertical-align: top;"><b>parse_attributes()</b></td>
 	<td class="summary" >An auxiliary function to parse tag's attributes 
      <dl>
@@ -216,7 +223,8 @@ Please contact Yuri Takhteyev (yuri -at- freewisdom.org) with any questions.
      Returns: 
     </td>
    </tr>
-     <tr>
+  
+   <tr>
 	<td class="name" width="300px" style="vertical-align: top;"><b>parse_xml()</b></td>
 	<td class="summary" >Parses simple XML.
      <dl>
@@ -225,7 +233,8 @@ Please contact Yuri Takhteyev (yuri -at- freewisdom.org) with any questions.
      Returns: <font color="purple">A table representing the tags. </color>
     </td>
    </tr>
-     <tr>
+  
+   <tr>
 	<td class="name" width="300px" style="vertical-align: top;"><b>test()</b></td>
 	<td class="summary" > 
      <dl>
