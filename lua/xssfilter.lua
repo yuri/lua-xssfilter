@@ -270,9 +270,13 @@ function XSSFilter:filter(html)
                         buffer = buffer.." "..attr..'="'..value:gsub('"', "&quot;")..'"'
                      end
                   end
-                  buffer = buffer..">"
-                  xml2string(child)
-                  buffer = buffer.."</"..child.label..">"
+                  if child.empty then
+                     buffer = buffer.." />"
+                  else
+                     buffer = buffer..">"
+                     xml2string(child)
+                     buffer = buffer.."</"..child.label..">"
+                  end
                end
             end
          else
