@@ -141,7 +141,6 @@ end
 --                       (defaults to GENERIC_ATTRIBUTES).
 -----------------------------------------------------------------------------
 function XSSFilter:init(allowed_tags, generic_attrs)
-   args = args or {}
    self.allowed_tags = allowed_tags or ALLOWED_TAGS
    for i,v in ipairs(self.allowed_tags) do
       self.allowed_tags[v] = self.allowed_tags[v] or {}
