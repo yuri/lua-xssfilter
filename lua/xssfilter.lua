@@ -28,6 +28,25 @@ local iconv_loaded, iconv = pcall(require, "iconv")
 -- @see GENERIC_ATTRIBUTES
 -----------------------------------------------------------------------------
 
+-----------------------------------------------------------------------------
+-- Returns HTML to be used for replacing bad tags.
+--
+-- @param tag            tag name.
+-- @param message        [optional] an explanation for why the tag was removed.
+-- @param text           source text without tags
+-- @return               replacement HTML.
+-----------------------------------------------------------------------------
+REPLACE_TAGS = function(self, tag, message, text)
+   local buffer = "<code>[HTML tag &lt;"..tag.."&gt; removed"
+   if message then
+      buffer = buffer..": "..message
+   end
+   return buffer.."]</code>"
+end
+REMOVE_TAGS = function(self, tag, message, text)
+   return text
+end
+
 ALLOWED_TAGS = {
 
    -- Simple tags allowed without any attributes other than those listed in
@@ -121,12 +140,13 @@ local XSSFilter_mt = {__metatable = {}, __index = XSSFilter}
 --                       (defaults to GENERIC_ATTRIBUTES).
 -- @return               a new instance of XSSFilter.
 -----------------------------------------------------------------------------      
-function new(allowed_tags, generic_attrs)
+function new(allowed_tags, generic_attrs, tags_handler)
    local obj = setmetatable({}, XSSFilter_mt)
    obj:init(allowed_tags)
    if iconv_loaded then
       obj.utf8_converter = iconv.new("UTF8", "UTF8")
    end
+   obj.tags_handler = tags_handler or REPLACE_TAGS
 
    return obj
 end
@@ -141,7 +161,6 @@ end
 --                       (defaults to GENERIC_ATTRIBUTES).
 -----------------------------------------------------------------------------
 function XSSFilter:init(allowed_tags, generic_attrs)
-   args = args or {}
    self.allowed_tags = allowed_tags or ALLOWED_TAGS
    for i,v in ipairs(self.allowed_tags) do
       self.allowed_tags[v] = self.allowed_tags[v] or {}
@@ -255,11 +274,11 @@ function XSSFilter:filter(html)
          elseif type(child) == "table" then
             local taginfo = self.allowed_tags[child.label]
             if not taginfo then
-               buffer = buffer..self:get_replacement(child.label, "not allowed")
+               buffer = buffer..self:tags_handler(child.label, "not allowed", child[1])
             else
                local test_result, why_not =  (taginfo._test or dummy_test)(child)
                if not test_result then
-                  buffer = buffer..self:get_replacement(child.label, why_not)
+                  buffer = buffer..self:tags_handler(child.label, why_not, child[1])
                else
                   -- ok, let's put the tag in
                   -- we might still strip some attributes, but silently
@@ -290,18 +309,19 @@ function XSSFilter:filter(html)
 end
 
 -----------------------------------------------------------------------------
--- Returns HTML to be used for replacing bad tags.
+-- Call handler to get text for replacing bad tags.
 --
 -- @param tag            tag name.
 -- @param message        [optional] an explanation for why the tag was removed.
+-- @param text           source text without tags
 -- @return               replacement HTML.
 -----------------------------------------------------------------------------
-function XSSFilter:get_replacement(tag, message)
-   local buffer = "<code>[HTML tag &lt;"..tag.."&gt; removed"
-   if message then
-      buffer = buffer..": "..message
+function XSSFilter:call_tags_handler(tag, message, text)
+   local res, err = self:tags_handler(tag, message, text)
+   if not res then
+      error(err)
    end
-   return buffer.."]</code>"
+   return res or ""
 end
 
 --x--------------------------------------------------------------------------
